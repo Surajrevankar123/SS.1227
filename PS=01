@@ -1,0 +1,22 @@
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  email TEXT UNIQUE,
+  name TEXT,
+  created_at TIMESTAMP
+);
+CREATE TABLE notes (
+  id UUID PRIMARY KEY,
+  user_id UUID,
+  title TEXT,
+  content TEXT,
+  updated_at TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE TABLE files (
+  id UUID PRIMARY KEY,
+  user_id UUID,
+  filename TEXT,
+  size INT,
+  upload_date TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
